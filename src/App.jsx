@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import CartIcon from "./components/CartIcon";
 import CartImg from "./components/CartImg";
@@ -177,7 +175,7 @@ function App() {
               >
                 <motion.div
                   className="img w-[100%] md:max-w-[250.66667px] h-[212px] md:h-[240px] rounded-[8px] active:border-[#C73B0F] cursor-pointer overflow-hidden"
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.05 }}
                 >
                   <img
                     src={`/images/${
@@ -205,10 +203,10 @@ function App() {
                   {product.price}
                 </div>
                 <motion.button
-                  className={`text-[14px] text-[#260F08] font-semibold mt-[24px] p-[12px] w-[160px] rounded-[999px] absolute top-[57%] md:top-[60%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] border border-[#AD8A85] ${
+                  className={`flex items-center justify-evenly text-[14px] text-[#260F08] font-semibold mt-[24px] p-[12px] w-[160px] rounded-[999px] absolute top-[57%] md:top-[60%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] border border-[#AD8A85] cursor-pointer ${
                     isInCart
-                      ? "bg-[#F59E0B] text-[#FFFFFF]"
-                      : "bg-[#FFFFFF] hover:bg-[#F59E0B] hover:text-[#FFFFFF]"
+                      ? "bg-[#C73B0F] text-[#FFFFFF]"
+                      : "bg-[#FFFFFF] hover:bg-[#FFF] hover:text-[#C73B0F] border-[#C73B0F]"
                   } transition-all duration-300 flex items-center justify-center gap-x-2`}
                   aria-label={`${
                     isInCart
