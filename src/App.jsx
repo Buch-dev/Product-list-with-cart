@@ -132,18 +132,24 @@ function App() {
     });
   };
 
-  const handleRemoveFromCart = (product) => {
+  const handleSubstractFromCart = (product) => {
     setCart((prevCart) => {
       const isProductInCart = prevCart.find((item) => item.id === product.id);
       if (isProductInCart) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        );
+        return prevCart
+          .map((item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          )
+          .filter((item) => item.quantity > 0);
       }
       return [...prevCart, { ...product, quantity: 1 }];
     });
+  };
+
+  const handleRemoveFromCart = (product) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== product.id));
   };
 
   const handleConfirmOrder = () => {
@@ -186,7 +192,8 @@ function App() {
                         : product.image_desktop
                     }.jpg`}
                     alt={product.alt}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover ${
+                      isInCart ? "border-2 border-[#C73B0F]" : "active:border-[#C73B0F]"}`}
                   />
                 </motion.div>
 
@@ -215,7 +222,7 @@ function App() {
                   }`}
                   onClick={() =>
                     isInCart
-                      ? handleRemoveFromCart(product)
+                      ? handleSubstractFromCart(product)
                       : handleAddToCart(product)
                   }
                   whileHover={{ scale: 1.05 }}
